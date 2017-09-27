@@ -161,7 +161,7 @@ ul {
 .car-details {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 420px);
+  justify-content: center;
 }
 
 .plate {
