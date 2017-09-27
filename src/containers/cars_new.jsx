@@ -6,7 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Aside from '../components/aside';
 import { addCar } from '../actions';
 
-class CardsNew extends Component {
+class CardNew extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     // TODO(Eschults): get stuff from form?
@@ -55,4 +55,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addCar }, dispatch);
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardsNew));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardNew));
