@@ -14,14 +14,14 @@ class CarsIndex extends Component {
   render () {
     if (this.props.cars.length === 0) {
       return [
-        <Aside key="aside">
+        <Aside key="aside" garage={this.props.garage}>
           <Link to="/cars/new">Add a car</Link>
         </Aside>,
         <div className="no-car" key="nocar">No car yet</div>
       ];
     }
     return [
-      <Aside key="aside">
+      <Aside key="aside" garage={this.props.garage}>
         <Link to="/cars/new">Add a car</Link>
       </Aside>,
       <div className="list-container" key="cars">

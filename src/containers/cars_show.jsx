@@ -15,12 +15,12 @@ class CarsShow extends Component {
     const car = this.props.car;
     if (!car) {
       return (
-        <Aside key="aside">
+        <Aside key="aside" garage={this.props.garage}>
           <Link to="/">Back to list</Link>
         </Aside>);
     }
     return [
-      <Aside key="aside">
+      <Aside key="aside" garage={this.props.garage}>
         <Link to="/">Back to list</Link>
       </Aside>,
       <div className="car-container" key="car">

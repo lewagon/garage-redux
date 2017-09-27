@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
@@ -16,7 +16,7 @@ class CardsNew extends Component {
 
   render () {
     return [
-      <Aside key="aside">
+      <Aside key="aside" garage={this.props.garage}>
         <Link to="/">Back to list</Link>
       </Aside>,
       <div key="add" className="form-container" style={{ backgroundImage: "url('/assets/images/form.jpg')"}}>
