@@ -1,17 +1,16 @@
- import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 import Aside from '../components/aside';
 import { addCar } from '../actions';
 
-class CardNew extends Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO(Eschults): get stuff from form?
-    const car = { owner: 'TODO', brand: 'TODO', model: 'TODO', plate: 'TODO' };
-    this.props.addCar(this.props.history, this.props.garage, car);
+class CarsNew extends Component {
+  onSubmit = (values) => {
+    this.props.addCar(this.props.garage, values, () => {
+      this.props.history.push('/');
+    });
   }
 
   render () {
@@ -21,22 +20,22 @@ class CardNew extends Component {
       </Aside>,
       <div key="add" className="form-container" style={{ backgroundImage: "url('/assets/images/form.jpg')"}}>
         <div className="overlay"></div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <div className="form-group">
             <label htmlFor="InputBrand">Brand</label>
-            <input type="text" className="form-control" id="InputBrand" placeholder="Aston Martin" />
+            <Field name="brand" type="text" placeholder="Aston Martin" component="input" className="form-control" />
           </div>
           <div className="form-group">
             <label htmlFor="InputModel">Model</label>
-            <input type="text" className="form-control" id="InputModel" placeholder="DB Mark III" />
+            <Field name="model" type="text" placeholder="DB Mark III" component="input" className="form-control" />
           </div>
           <div className="form-group">
             <label htmlFor="InputOwner">Owner</label>
-            <input type="text" className="form-control" id="InputOwner" placeholder="James Bond" />
+            <Field name="owner" type="text" placeholder="James Bond" component="input" className="form-control" />
           </div>
           <div className="form-group">
             <label htmlFor="InputPlate">Plate</label>
-            <input type="text" className="form-control" id="InputPlate" placeholder="EGU-503H" />
+            <Field name="plate" type="text" placeholder="DB Mark III" component="input" className="form-control" />
           </div>
           <button type="submit">Add car</button>
         </form>
@@ -51,8 +50,9 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addCar }, dispatch);
-}
+export default reduxForm({
+  form: 'newCarForm' // a unique identifier
+})(
+  connect(mapStateToProps, { addCar })(CarsNew)
+);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardNew));
