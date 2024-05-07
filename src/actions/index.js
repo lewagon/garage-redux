@@ -1,4 +1,4 @@
-const BASE_URL = 'https://wagon-garage-api.herokuapp.com';
+const BASE_URL = 'https://garage.api.lewagon.com';
 
 export function fetchCars(garage) {
   const url = `${BASE_URL}/${garage}/cars`;
